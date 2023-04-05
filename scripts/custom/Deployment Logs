@@ -1,0 +1,249 @@
+fasih@HP-EliteBook:~/Desktop/gmx-amplifi$ npx hardhat run scripts/custom/1_deployTokens.js --network polygonMumbai
+Generating typings for: 133 artifacts in dir: typechain for target: ethers-v5
+Successfully generated 247 typings!
+Compiled 133 Solidity files successfully
+Deploying WETH 0x75Bd7A9086447e4D5afB06B30C13C14Bf94060eB "Wrapped Ether" "WETH" "18"
+... Completed!
+Deploying FaucetToken 0xF4059623A4Aa1645AE41057cd961944149713146 "Wrapped Bitcoin" "WBTC" "18" "1000000000000000000000"
+... Completed!
+Deploying FaucetToken 0xAd70f9404504d74C1453dB9A9DdF6d974361914E "USDC Coin" "USDC" "18" "1000000000000000000000"
+... Completed!
+Deploying FaucetToken 0x0849874f601bAFEFE6272F4f48ED9a64d5CF7b3C "Tether" "USDT" "18" "1000000000000000000000"
+... Completed!
+Deploying GMX 0x91cf8c8E2B6C580936223d28Df617B25173122FB 
+... Completed!
+Deploying MintableBaseToken 0x9DbC945F0e407dccDd738D66DAe011964D51475C "esGMX" "esGMX" "0"
+... Completed!
+
+fasih@HP-EliteBook:~/Desktop/gmx-amplifi$ npx hardhat run scripts/custom/2_deployVault.js --network polygonMumbai
+No need to generate any newer typings.
+Deploying Vault 0x34B20Eb9E1e4b7D4C683963855DAE608be5529ab 
+... Completed!
+Deploying USDG 0x1F20c0e277a8b69291a849d8D8F7680b2840eeaC "0x34B20Eb9E1e4b7D4C683963855DAE608be5529ab"
+... Completed!
+Deploying Router 0x3D69F5E48fE3417422727329149152FcCF1D9A1b "0x34B20Eb9E1e4b7D4C683963855DAE608be5529ab" "0x1F20c0e277a8b69291a849d8D8F7680b2840eeaC" "0x75Bd7A9086447e4D5afB06B30C13C14Bf94060eB"
+... Completed!
+Deploying VaultPriceFeed 0x6658A8DA04E0d9B1A2Ac22B85221Ca6Bf8F173E2 
+... Completed!
+Sending vaultPriceFeed.setMaxStrictPriceDeviation...
+... Sent! 0x66b78326e701fb308a1b8445dcbbefa39eb059d275d612d3d8c2895d09435b04
+Sending vaultPriceFeed.setPriceSampleSpace...
+... Sent! 0x405b36d5288ee402f821763de64e37bc727e7905408506ff9d660da3cf361232
+Sending vaultPriceFeed.setIsAmmEnabled...
+... Sent! 0x14b119f4815cb9793e21e8e56655bca62ea0b25238f968e7eabed78fe01b4524
+Deploying GLP 0xDa15Ca1729d0E0966BB781B5466a264A058540a3 
+... Completed!
+Sending glp.setInPrivateTransferMode...
+... Sent! 0x0a0636c377574714bbfdb3efc66de3b8732fae3d43f527dd2b5d3b6d6e3c3065
+Deploying GlpManager 0x45108890d58b14475a1b10059B75eE87B808a5F3 "0x34B20Eb9E1e4b7D4C683963855DAE608be5529ab" "0x1F20c0e277a8b69291a849d8D8F7680b2840eeaC" "0xDa15Ca1729d0E0966BB781B5466a264A058540a3" "0x0000000000000000000000000000000000000000" "900"
+... Completed!
+Sending glpManager.setInPrivateMode...
+... Sent! 0x6ee990f9c3746657f817b693a922e228da195b5e66a5d7769eda99013ec71f3e
+Sending glp.setMinter...
+... Sent! 0x2f1a05e9e9056f9cbf3e35bea05c8020acf3f759357b2b33c509c18b6f04e07b
+Sending usdg.addVault(glpManager)...
+... Sent! 0x8291b94d45f4e20bff8baad7966d0ad98ec554d9136d6443464d41786041c531
+Sending vault.initialize...
+... Sent! 0x1730c98ee69571392396a62f8a8a8a061087e961ba6c4fe9a44eeb64dd8218ae
+Sending vault.setFundingRate...
+... Sent! 0x14f6086c904d71212b293467935416da313dec61851e4396be6ebe1ce7fb3966
+Sending vault.setInManagerMode...
+... Sent! 0xba34d324ee44430806e827945a1d29d0a647a633e35252b215714a934bfe081b
+Sending vault.setManager...
+... Sent! 0xc115bc31462a10bf1c8ee07e1b4655dc3bb379650c9ce7edd82079ac26cb9d3f
+Sending vault.setFees...
+... Sent! 0xd61c38b47faafb5af036fd10978d00e6fc94ab303be2b203051d8773c5da481e
+Deploying VaultErrorController 0x414CDB3B8616d48987Fd075a0944bA1E1Fd62277 
+... Completed!
+Sending vault.setErrorController...
+... Sent! 0xc0b48a4400cdde799c2567be72d1e1700028d2f5b4ca9a0459952c604cd5b2e4
+Sending vaultErrorController.setErrors...
+... Sent! 0x059c4662f52d57068fd1170a8605b00d1055427c9f5258a69d45ad750404274e
+Deploying VaultUtils 0xfDF286ADE7b96dBcec9A9aAE35cb0C41345FEec7 "0x34B20Eb9E1e4b7D4C683963855DAE608be5529ab"
+... Completed!
+Sending vault.setVaultUtils...
+... Sent! 0x15059266ccf39f5d40732236fe0d95a050f82b86068046415b3b5d07e1e27b31
+
+fasih@HP-EliteBook:~/Desktop/gmx-amplifi$ npx hardhat run scripts/custom/3_deployShortsTracker.js --network polygonMumbai
+No need to generate any newer typings.
+Deploying ShortsTracker 0xd0211d950CB60AbE1c7774f1A23bf0f4cE06F243 "0x34B20Eb9E1e4b7D4C683963855DAE608be5529ab"
+... Completed!
+Sending shortsTracker.setGov...
+... Sent! 0x903bc0e3b36948089927b86a0326415174db039a160f1cef8773ee4d2a5a3d15
+Sending glpManager.setShortsTracker...
+... Sent! 0xcaebaf9ffffd20966e0e4d4933d37181fca7e8cee8866235160856c6ae7f9060
+
+fasih@HP-EliteBook:~/Desktop/gmx-amplifi$ npx hardhat run scripts/custom/4_deployRewardRouterV2.js --network polygonMumbai
+No need to generate any newer typings.
+Deploying MintableBaseToken 0x48264e3F775a8938a27Ba772d08A039C1cF35B24 "Bonus GMX" "bnGMX" "0"
+... Completed!
+Sending esGmx.setInPrivateTransferMode...
+... Sent! 0xc2e49917273febbc509ee5c9e94451a3abdd6bb7569a349f956eae01d2746279
+Sending glp.setInPrivateTransferMode...
+... Sent! 0xcfc9a70bf39671c2ddff1119354adb42cb80b8e0c6d167dad8c783c15f7a45d1
+Deploying RewardTracker 0xFb4AD92adc409Fc21Cc440b92f12363ed12b9EE0 "Staked GMX" "sGMX"
+... Completed!
+Deploying RewardDistributor 0x956AECf5ab0632AeE8671fBdE5eC151193158bB5 "0x9DbC945F0e407dccDd738D66DAe011964D51475C" "0xFb4AD92adc409Fc21Cc440b92f12363ed12b9EE0"
+... Completed!
+Sending stakedGmxTracker.initialize...
+... Sent! 0x4f152bf4e3956d137c66e6cd71f7985580a161dd9ad418c0df3cd9fe7f135029
+Sending stakedGmxDistributor.updateLastDistributionTime...
+... Sent! 0xf390a8b3a8d5bbf2bc01d461ff328dce1b45c31993cd2144bea98134ededbdd5
+Deploying RewardTracker 0x8963923DB94Ab0AcF396ec608CbA291301bA26Ef "Staked + Bonus GMX" "sbGMX"
+... Completed!
+Deploying BonusDistributor 0x0d50510A1128e75c4879a138F6aD172c46e3C278 "0x48264e3F775a8938a27Ba772d08A039C1cF35B24" "0x8963923DB94Ab0AcF396ec608CbA291301bA26Ef"
+... Completed!
+Sending bonusGmxTracker.initialize...
+... Sent! 0xe5544c2e46106de324d56467c97092f58fa29c5a59415d7fe3ee8cfe7ba744f0
+Sending bonusGmxDistributor.updateLastDistributionTime...
+... Sent! 0x5ec37366e5ef3bdceeb3fe005f3b14d35ae4fd64d22615454f01fe0041b24824
+Deploying RewardTracker 0x876007Ae40D21Fbb94bfc468D9eFdf07FE1B1318 "Staked + Bonus + Fee GMX" "sbfGMX"
+... Completed!
+Deploying RewardDistributor 0xa30f443620293d505261Be65C8cb0543d423D3Ee "0x75Bd7A9086447e4D5afB06B30C13C14Bf94060eB" "0x876007Ae40D21Fbb94bfc468D9eFdf07FE1B1318"
+... Completed!
+Sending feeGmxTracker.initialize...
+... Sent! 0x9118e57a39d80f9512e8f66c1cca234247fe79ccddc8f78c761b55178f970978
+Sending feeGmxDistributor.updateLastDistributionTime...
+... Sent! 0xaf85ed218f931843abc3b1030a075af9aed3229ac6200023c8ae9bdf78f11a00
+Deploying RewardTracker 0xF06D3c2e7dfA9a73Bee4C752D6a6df3a6abFEB48 "Fee GLP" "fGLP"
+... Completed!
+Deploying RewardDistributor 0xaf85608fc1422B338C03EB0168E46ca2c674Fe1F "0x75Bd7A9086447e4D5afB06B30C13C14Bf94060eB" "0xF06D3c2e7dfA9a73Bee4C752D6a6df3a6abFEB48"
+... Completed!
+Sending feeGlpTracker.initialize...
+... Sent! 0xd9e17bbe01220d2fb275734a5114166bcb1df1d6de5465390b5185aa815b44b4
+Sending feeGlpDistributor.updateLastDistributionTime...
+... Sent! 0x6ab59ab91b318c9603b58c55700ac7a1766693287860993c620549b0071c8458
+Deploying RewardTracker 0x894BAc21E502D31f8e30C95Ca5c850cE3e6D6B27 "Fee + Staked GLP" "fsGLP"
+... Completed!
+Deploying RewardDistributor 0x28e599F5840E0Cbe9bB2392bf6bf664C400B32b7 "0x9DbC945F0e407dccDd738D66DAe011964D51475C" "0x894BAc21E502D31f8e30C95Ca5c850cE3e6D6B27"
+... Completed!
+Sending stakedGlpTracker.initialize...
+... Sent! 0xd90d0f63c15cba9d2ccbd095cdea0d45904f9ff3e9ad1853863a56a4e3c6bd8b
+Sending stakedGlpDistributor.updateLastDistributionTime...
+... Sent! 0xd0899fbe39fa98ab9fedcb4f2e16b30b2a1ea3d9894277868fae714937d25032
+Sending stakedGmxTracker.setInPrivateTransferMode...
+... Sent! 0x0d6a55813053b1662a834f10d7b8fdd7d8696098e3c4539b517fb34fc34e249c
+Sending stakedGmxTracker.setInPrivateStakingMode...
+... Sent! 0xd275665858fd6985d9788150ea98a34135a8edc84714b6760a360045df297d7c
+Sending bonusGmxTracker.setInPrivateTransferMode...
+... Sent! 0x036d8417751239e3d7db4f32db70a14eb8f15aa497076d8c3cc28797be3c9116
+Sending bonusGmxTracker.setInPrivateStakingMode...
+... Sent! 0xe7dae6dbdb47607de4845b2c1ea5872f5f547f94ddb13f71ae9d1949a48bea85
+Sending bonusGmxTracker.setInPrivateClaimingMode...
+... Sent! 0x27ab31a42baedc8aa223e89fc2cef7a2c1b277385b8fcc1f98924091dd628515
+Sending feeGmxTracker.setInPrivateTransferMode...
+... Sent! 0x3c10514940c497944ed3febb59610320f322c4627a932913e7124891c6a5faaa
+Sending feeGmxTracker.setInPrivateStakingMode...
+... Sent! 0x0a59645ca159eabe34e4157aa1e457c557c3e134964e0c80b66227ab1f2ea7e2
+Sending feeGlpTracker.setInPrivateTransferMode...
+... Sent! 0x433e730674479f69af623a815a8992d42763bb97a469d6bcf1eb2484bbdef972
+Sending feeGlpTracker.setInPrivateStakingMode...
+... Sent! 0xa525f0023a6aa8702e7828444a2736286c5cf568acbb0956001e771c2bff110d
+Sending stakedGlpTracker.setInPrivateTransferMode...
+... Sent! 0x87cab06c6ca3136223a0c7af78edb74d5e350bc719f87a9693a1148bca834cbf
+Sending stakedGlpTracker.setInPrivateStakingMode...
+... Sent! 0x1126188c73163a859f57ffdb2e2b137ad9507c5c65902374dbd63c71240b6620
+Deploying Vester 0x56504D4552B8DF5831ee07342cEF33d1767C9F4a "Vested GMX" "vGMX" "31536000" "0x9DbC945F0e407dccDd738D66DAe011964D51475C" "0x876007Ae40D21Fbb94bfc468D9eFdf07FE1B1318" "0x91cf8c8E2B6C580936223d28Df617B25173122FB" "0xFb4AD92adc409Fc21Cc440b92f12363ed12b9EE0"
+... Completed!
+Deploying Vester 0xa443c33cf5d749588dccc216902B7c8E96D5b528 "Vested GLP" "vGLP" "31536000" "0x9DbC945F0e407dccDd738D66DAe011964D51475C" "0x894BAc21E502D31f8e30C95Ca5c850cE3e6D6B27" "0x91cf8c8E2B6C580936223d28Df617B25173122FB" "0x894BAc21E502D31f8e30C95Ca5c850cE3e6D6B27"
+... Completed!
+Deploying RewardRouterV2 0x10C61626CaFdcc8Bbffcff72A3D350C2e4963D78 
+... Completed!
+Sending rewardRouter.initialize...
+... Sent! 0x2aacb71d88d555e3377a9140038ae63a63ff10f4d1a7dc1ac04fd86d73d51398
+Sending glpManager.setHandler(rewardRouter)...
+... Sent! 0x16dd5383271ce06d4edc2d1e68ad77ff1d7ca711ef7f2400197a154dd38d5f09
+Sending stakedGmxTracker.setHandler(rewardRouter)...
+... Sent! 0xf30da84bd0c276b57d53e1afbd7703292047352c736a92c5d25ff3e05b104c42
+Sending stakedGmxTracker.setHandler(bonusGmxTracker)...
+... Sent! 0xebc257a9321ad0d9653c366c5c1593f331b04f29b167374807b5af333a0acbd2
+Sending bonusGmxTracker.setHandler(rewardRouter)...
+... Sent! 0x676cec1f92f140c3c6b0924f3e370fb6b81c5b50f7a18ba5c111703715b96e47
+Sending bonusGmxTracker.setHandler(feeGmxTracker)...
+... Sent! 0xca70e11a8c475a6a34aaae2fd8a74c9c8f8b0cf68729e19937917e6023c1b115
+Sending bonusGmxDistributor.setBonusMultiplier...
+... Sent! 0xe070499e3b74dfd2fd5f391067df6cf84c283749a404eded05a1676fbb4f4941
+Sending feeGmxTracker.setHandler(rewardRouter)...
+... Sent! 0xd394685b805eef8a15568a9b06bf10e32d0785f667bc93701b5654382906febc
+Sending esGmx.setHandler(stakedGmxTracker)...
+... Sent! 0x4798e5bd227b8494939d7758baf579b4914060008693aa2869d87b26abb8832a
+Sending bnGmx.setHandler(feeGmxTracker...
+... Sent! 0x6ebcd74a1b3ae21eb309347539e11b54dcb4e1f899f2cb79ca605117cc4bfdf7
+Sending bnGmx.setMinter(rewardRouter...
+... Sent! 0x5569581bbffba30983ed404d16b143c03179df9af1d976c93b477610c932ff86
+Sending feeGlpTracker.setHandler(stakedGlpTracker)...
+... Sent! 0x71ebc0f0dde86d50cdac5a48b6cfe167a79f74aed7337e8ef9a3838349de68ba
+Sending glp.setHandler(feeGlpTracker)...
+... Sent! 0x76ea5fe70b41d2928af27bfa0eb2c1d70351531d0d6d6272d40ba0cd346cd760
+Sending feeGlpTracker.setHandler(rewardRouter)...
+... Sent! 0x21577a477b16c2541ceacfb58e767c5ea5e9a44c91788889394d175a0ddb19f8
+Sending stakedGlpTracker.setHandler(rewardRouter)...
+... Sent! 0xeec876a9187f0a1ed67d2e02283f68f6995856f75d3ffff03934ae83a5a1ab67
+Sending esGmx.setHandler(rewardRouter)...
+... Sent! 0xf3286bb8a0e42dc1de7e866f01bc43a0bf4f99f0f053f2d567ced9a668906423
+Sending esGmx.setHandler(stakedGmxDistributor)...
+... Sent! 0xf1777d75f94789c69c760198b07669967ed6431ae7e0675713244bdf759267d8
+Sending esGmx.setHandler(stakedGlpDistributor)...
+... Sent! 0x1cc73ee989cd7875eb002b18a225f7c5fb7d21422cb9372ceba73100de12b310
+Sending esGmx.setHandler(stakedGlpTracker)...
+... Sent! 0x78d2e8104f2f778eee86dd5520aba561a45a7b2a86bfd88802ce387e90433e8d
+Sending esGmx.setHandler(gmxVester)...
+... Sent! 0x5495fcd26c0300198d764b3e47b3cfd37a29286a39d4be13698464029705821f
+Sending esGmx.setHandler(glpVester)...
+... Sent! 0x23e6d9ebd9adfd8964ee0750ae5f2a10901f2bea037afb893b7c1394b70b8c90
+Sending esGmx.setMinter(gmxVester)...
+... Sent! 0x726a10a62a61d8afc7758cc257f36dd04f02f605e4007316bfdf7bf439f62c56
+Sending esGmx.setMinter(glpVester)...
+... Sent! 0xef0c5c3b1a278c86de34d2943af33d6d7bf680a96c74b3e08841a3a7a84f989c
+Sending gmxVester.setHandler(rewardRouter)...
+... Sent! 0xe5ebc45dcff8a6274f14fa4df64e76023613ad493aef4c9acc59d7511540713d
+Sending glpVester.setHandler(rewardRouter)...
+... Sent! 0x899f0bea7e36cf1c7205ec11a7638306c9aef35a0544f5c4ec23bba92d61cf5b
+Sending feeGmxTracker.setHandler(gmxVester)...
+... Sent! 0x99fde8ec24e50d6e3aec4a85b466b29cd3b73819ae3e0b2f990f36a4f8b26707
+Sending stakedGlpTracker.setHandler(glpVester)...
+... Sent! 0xe85d73876a0edba1ecd0fe9902415183486f01d6f3565ccd168513114665256e
+
+fasih@HP-EliteBook:~/Desktop/gmx-amplifi$ npx hardhat run scripts/custom/5_deployGlpRewardRouter.js --network polygonMumbai
+No need to generate any newer typings.
+Deploying RewardRouterV2 0xcFddf3a9045dE6262EfE1D989A77AA8664109B73 
+... Completed!
+Sending rewardRouter.initialize...
+... Sent! 0xfe9ce96a665b82a3cb2bd56f047b0aa1ded5bab5b883c96479bd12f867cd0aa9
+
+fasih@HP-EliteBook:~/Desktop/gmx-amplifi$ npx hardhat run scripts/custom/6_deployPositionRouter.js --network polygonMumbai
+No need to generate any newer typings.
+Deploying PositionUtils 0x53070994EfC79E882Ef33c6f00F97fF115A81068 
+... Completed!
+Deploying ReferralStorage 0xEBb19f9229b90A8733048fb206810360452cBfb7 
+... Completed!
+Deploying PositionRouter:PositionRouter 0x784906661169550db7864e1f340516BAC19E401c "0x34B20Eb9E1e4b7D4C683963855DAE608be5529ab" "0x3D69F5E48fE3417422727329149152FcCF1D9A1b" "0x75Bd7A9086447e4D5afB06B30C13C14Bf94060eB" "0xd0211d950CB60AbE1c7774f1A23bf0f4cE06F243" "30" "20000000000000000"
+... Completed!
+Sending positionRouter.setReferralStorage...
+... Sent! 0x59dc4c9ca58c8e89236e32cbb2706875c48996098f8cb4446c2e2b79535809ae
+Sending router.addPlugin...
+... Sent! 0x8061e47e8112447ed7fab206afab9d3ee846880861ba6f272d12b6977a56022d
+Sending positionRouter.setDelayValues...
+... Sent! 0x7d6bff5f1213523ede235ea48b6e4215b1b2563394352a779094addabb10be5b
+Sending positionRouter.setGov...
+... Sent! 0xcda487c4e0bd89acd59c6e5dcb8d6d0a482ff339491e593d06842b9565562aab
+Sending positionRouter.setAdmin...
+... Sent! 0x67ce863975685942b9aa928173e27882b6a867450918af9ac87a41e0e322ac93
+
+fasih@HP-EliteBook:~/Desktop/gmx-amplifi$ npx hardhat run scripts/custom/7_deployOrderBook.js --network polygonMumbai
+No need to generate any newer typings.
+Deploying OrderBook 0xA81b209F99E608956d7A29aBbC8070415bdA6D32 
+... Completed!
+Sending orderBook.initialize...
+... Sent! 0x4eb4a33ee4d85c9f6a29dcbd9eace51f355cc6294d4419c6caffd54ddc343861
+
+fasih@HP-EliteBook:~/Desktop/gmx-amplifi$ npx hardhat run scripts/custom/8_deployReaders.js --network polygonMumbai
+No need to generate any newer typings.
+Deploying Reader:Reader 0x4AE1c173F9c3bed29377E4054630EeBBEA067B1F 
+... Completed!
+Deploying RewardReader:RewardReader 0x7615641D627604FD806B69dA2D7F2873fe1390bF 
+... Completed!
+Deploying OrderBookReader 0x5d904DB680356dFe9DF6F8e8f5026B6300bcD4D1 
+... Completed!
+Sending Reader.setConfig...
+... Sent! 0x5c4027007b810f8f12645400fbfe5cf28a9c97291badf5bebb561d9155fead23
